@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": "tdr6kubr2xd",
+      "title": "Tesla",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "price": 700,
+      "inCart": false
+    },
+    {
+      "id": "ct4w8vhab5p",
+      "title": "Toyota",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "price": 750,
+      "inCart": false
+    },
+    {
+      "id": "m7281hc8os",
+      "title": "Honda",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "price": 850,
+      "inCart": false
+    },
+    {
+      "title": "mazda",
+      "price": "120",
+      "description": "fff",
+      "id": "oDc4vau"
+    }
+  ],
+  "cart": [
+    {
+      "id": "bix27468fjc",
+      "title": "Audi",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "price": 100,
+      "quantity": 1
+    }
+  ]
+}
