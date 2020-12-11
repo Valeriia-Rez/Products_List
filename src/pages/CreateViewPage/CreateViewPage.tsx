@@ -1,37 +1,67 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { useStore } from "../../store/store";
 
-interface ICreateViewPageProps {
+export interface ICreateViewPageProps {
   title?: string;
   price?: number;
   description?: string;
+  id?: string;
 }
 
-const CreateViewPage = (props: ICreateViewPageProps) => {
-  const [title, setTitle] = useState<string>(props.title || "");
-  const [price, setPrice] = useState<number>(props.price || 0);
-  const [description, setDescription] = useState<string>(
-    props.description || ""
-  );
+const CreateViewPage = ({
+  title = "",
+  price = 0,
+  description = "",
+  id = "",
+}: ICreateViewPageProps) => {
+  const [titleValue, setTitleValue] = useState<string>("");
+  const [priceValue, setPriceValue] = useState<number>(0);
+  const [descriptionValue, setDescriptionValue] = useState<string>("");
   const history = useHistory();
+  const [state, dispatch] = useStore();
+
+  useEffect(() => {
+    setTitleValue(title);
+    setPriceValue(price);
+    setDescriptionValue(description);
+  }, [title, price, description]);
+
   const onSaveClickHandler = async () => {
     const product = {
-      title,
-      price,
-      description,
+      title: titleValue,
+      price: priceValue,
+      description: descriptionValue,
+      inCart: false,
     };
-    await axios.post(`http://localhost:8000/products`, product);
+    if (id) {
+      const editedProduct = await axios.patch(
+        `http://localhost:8000/products/${id}`,
+        product
+      );
+      dispatch("EDIT_PRODUCT", editedProduct.data);
+    } else {
+      const createdProduct = await axios.post(
+        `http://localhost:8000/products`,
+        product
+      );
+      dispatch("SET_PRODUCT", createdProduct.data);
+    }
     history.push("/");
   };
 
   return (
     <>
-      <Input value={title} onChange={setTitle} type="text" />
-      <Input value={price} onChange={setPrice} type="number" />
-      <Input value={description} onChange={setDescription} type="text" />
+      <Input value={titleValue} onChange={setTitleValue} type="text" />
+      <Input value={priceValue} onChange={setPriceValue} type="number" />
+      <Input
+        value={descriptionValue}
+        onChange={setDescriptionValue}
+        type="text"
+      />
       <Button onClick={onSaveClickHandler} buttonName="Save" />
     </>
   );

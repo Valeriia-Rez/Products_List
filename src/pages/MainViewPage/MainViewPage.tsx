@@ -9,22 +9,63 @@ import Input from "../../components/Input";
 const MainViewPage = () => {
   const history = useHistory();
   const [state, dispatch] = useStore();
-  const [refetchProducts, setRefetchProducts] = useState(false);
   const [searchTitle, setSearchTitle] = useState("");
+
+  const fetchData = async () => {
+    const products = await axios("http://localhost:8000/products");
+    dispatch("SET_PRODUCTS", products.data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const products = await axios("http://localhost:8000/products");
-      dispatch("FETCH_PRODUCTS", products.data);
-      setRefetchProducts(false);
-    };
-    fetchData();
-  }, [refetchProducts]);
+    if (!state.products.length) {
+      fetchData();
+    }
+  }, [state.products.length]);
 
   const onSearchClickHandler = async (title: string) => {
     const products = await axios(
       `http://localhost:8000/products?title=${title}`
     );
-    dispatch("FETCH_PRODUCTS", products.data);
+    dispatch("SET_PRODUCTS", products.data);
+  };
+
+  const onDeleteHandler = async (id: string) => {
+    await axios.delete(`http://localhost:8000/products/${id}`);
+    dispatch("DELETE_PRODUCT", id);
+  };
+
+  const onAddToCartHandler = async ({
+    id,
+    title,
+    price,
+    description,
+  }: {
+    id: string;
+    title: string;
+    price: number;
+    description: string;
+  }) => {
+    const addedProduct = {
+      title,
+      price,
+      description,
+      id,
+      quantity: 1,
+    };
+    await axios.patch(`http://localhost:8000/products/${id}`, { inCart: true });
+    const updatedProducts = state.products.map((product: any) => {
+      if (product.id === id) {
+        product.inCart = true;
+      }
+      return product;
+    });
+
+    dispatch("SET_PRODUCTS", updatedProducts);
+    const addedProductToCart = await axios.post(
+      `http://localhost:8000/cart`,
+      addedProduct
+    );
+    dispatch("ADD_TO_CART", addedProductToCart.data);
   };
 
   return (
@@ -34,18 +75,21 @@ const MainViewPage = () => {
         onClick={() => onSearchClickHandler(searchTitle)}
         buttonName="Search"
       />
-      <Button onClick={() => setRefetchProducts(true)} buttonName="Get All" />
+      <Button onClick={() => fetchData()} buttonName="Get All" />
       <Button onClick={() => history.push("/create")} buttonName="Create" />
+      <Button onClick={() => history.push("/cart")} buttonName="Cart" />
       <div>
         {state.products.map((product: any) => {
           return (
             <Card
+              onAddToCart={() => onAddToCartHandler(product)}
+              onDelete={onDeleteHandler}
               key={product.id}
               title={product.title}
               price={product.price}
               description={product.description}
               id={product.id}
-              setRefetchProducts={setRefetchProducts}
+              inCart={product.inCart}
             />
           );
         })}

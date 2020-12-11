@@ -12,7 +12,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={MainViewPage} />
         <Route path="/cart" component={CartViewPage} />
-        <Route path="/edit" component={EditViewPage} />
+        <Route path="/edit/:id" component={EditViewPage} />
         <Route path="/create" component={CreateViewPage} />
       </Switch>
     </Layout>

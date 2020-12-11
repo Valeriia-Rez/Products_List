@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useHistory } from "react-router";
-import { useStore } from "../../store/store";
 import Button from "../Button";
 import "./Card.scss";
 
@@ -10,33 +9,33 @@ interface ICardProps {
   price: number;
   description: string;
   id: string;
-  setRefetchProducts(isRefetch: boolean): void;
+  inCart: boolean;
+  onDelete(id: string): void;
+  onAddToCart(): void;
 }
 const Card = ({
   title,
   price,
   description,
   id,
-  setRefetchProducts,
+  inCart,
+  onDelete,
+  onAddToCart,
 }: ICardProps) => {
   const history = useHistory();
-  const onDeleteHandler = async (id: string) => {
-    await axios.delete(`http://localhost:8000/products/${id}`);
-    setRefetchProducts(true);
-  };
-
-  const onAddToCartHandler = () => {
-    console.log("ff");
-  };
 
   return (
     <div className="card">
       <h1>{title}</h1>
       <span>{price}</span>
       <p>{description}</p>
-      <Button onClick={() => history.push("/edit")} buttonName="Edit" />
-      <Button onClick={() => onDeleteHandler(id)} buttonName="Delete" />
-      <Button onClick={onAddToCartHandler} buttonName="Add to Cart" />
+      <Button onClick={() => history.push(`/edit/${id}`)} buttonName="Edit" />
+      <Button onClick={() => onDelete(id)} buttonName="Delete" />
+      <Button
+        onClick={onAddToCart}
+        buttonName="Add to Cart"
+        disabled={inCart}
+      />
     </div>
   );
 };

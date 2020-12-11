@@ -7,8 +7,17 @@ interface IProduct{
     description: string;
     inCart: boolean;
 }
+
+interface ICart{
+    id: number;
+    title: string;
+    price:number;
+    description: string;
+    quantity:number;
+}
 export interface IState{
     products: IProduct[] | [];
+    cart: ICart | [];
 }
 
 let globalState: any = {};
