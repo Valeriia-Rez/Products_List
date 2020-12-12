@@ -22,6 +22,7 @@ const MainViewPage = () => {
     if (!state.products.length) {
       fetchData();
     }
+    console.log("render");
   }, [state.products.length]);
 
   const onSearchClickHandler = async (title: string) => {
@@ -62,13 +63,26 @@ const MainViewPage = () => {
       `http://localhost:8000/cart`,
       addedProduct
     );
-    dispatch("ADD_TO_CART", addedProductToCart.data);
+    dispatch("ADD_TO_CART", [addedProductToCart.data]);
   };
 
+  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      onSearchClickHandler(searchTitle);
+    }
+  };
+
+  console.log(state);
   return (
     <div className="mainViewPage">
       <div className="mainViewPage__wrapper">
-        <Input value={searchTitle} onChange={setSearchTitle} type="text" />
+        <Input
+          value={searchTitle}
+          onChange={setSearchTitle}
+          type="text"
+          placeholder="Enter title to search product..."
+          onKeyPress={onKeyPressHandler}
+        />
         <div className="mainViewPage__buttons">
           <Button
             onClick={() => onSearchClickHandler(searchTitle)}
@@ -87,7 +101,7 @@ const MainViewPage = () => {
           />
           <Button
             onClick={() => history.push("/cart")}
-            buttonName="Cart"
+            buttonName={`Cart ${!!state.cart.length ? state.cart.length : ""}`}
             className="button"
           />
         </div>

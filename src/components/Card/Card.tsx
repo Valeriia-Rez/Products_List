@@ -22,13 +22,12 @@ const Card = ({
   onAddToCart,
 }: ICardProps) => {
   const history = useHistory();
-
   return (
     <div className="card">
       <div className="card__wrapper">
-        <h1 className="card__heading">{title}</h1>
+        <h1>{title}</h1>
         <span>Price: {price}</span>
-        <p>{description}</p>
+        <p>Description: {description}</p>
         <div className="card__buttons">
           <div className="card__buttonsLeft">
             <Button

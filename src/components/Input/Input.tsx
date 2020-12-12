@@ -2,12 +2,20 @@ import React from "react";
 import "./Input.scss";
 
 interface IInputProps {
-  value: string | number;
+  value: string | number | undefined;
   onChange(term: any): void;
   type: string;
+  placeholder: string;
+  onKeyPress?(e: React.SyntheticEvent): void;
 }
 
-const Input = ({ value, onChange, type }: IInputProps) => {
+const Input = ({
+  value,
+  onChange,
+  type,
+  placeholder,
+  onKeyPress,
+}: IInputProps) => {
   return (
     <input
       type={type}
@@ -15,7 +23,8 @@ const Input = ({ value, onChange, type }: IInputProps) => {
       className="input"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      placeholder="Enter title for search product.."
+      placeholder={placeholder}
+      onKeyPress={(e) => onKeyPress && onKeyPress(e)}
     ></input>
   );
 };

@@ -11,6 +11,7 @@
     color: #fff;
     background-color: rgb(98, 44, 119);
   }
+
   &-disabled {
     color: rgb(233, 225, 225);
     &:hover {
@@ -18,5 +19,22 @@
       color: rgb(233, 225, 225);
       cursor: default;
     }
+  }
+
+  &-sm {
+    margin: 0 5px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid silver;
+    border-radius: 2px;
+    &:hover {
+      color: #fff;
+      background-color: rgb(98, 44, 119);
+      border: 1px solid rgb(98, 44, 119);
+    }
+  }
+
+  &-save {
+    width: 140px;
   }
 }

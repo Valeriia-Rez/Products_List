@@ -1,0 +1,12 @@
+.createViewPage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 275px;
+    width: 500px;
+  }
+}

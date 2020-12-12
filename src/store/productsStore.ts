@@ -28,7 +28,7 @@ const configureStore = () => {
               return {...curState, products: updatedProducts}
         },
         ADD_TO_CART: (curState: IState, cartList: ICart[]) => {
-            return {...curState, cart: cartList}
+            return {...curState, cart: [...curState.cart, ...cartList]}
         },
         REMOVE_FROM_CART: (curState: IState, id: string | number) => {
             const updatedProducts = curState.cart.filter((product: ICart) => {
@@ -48,7 +48,7 @@ const configureStore = () => {
         },
         DEACREASE_QUANTITY: (curState: any, id: string | number)=>{
             const updatedProducts = curState.cart.map((product: ICart) => {
-                if (product.quantity -1 >= 1 && product.id === id){
+                if (product.id === id){
                     product.quantity -= 1;
                 };
                 return product;

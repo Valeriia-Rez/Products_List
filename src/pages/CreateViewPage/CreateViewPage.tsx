@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { useStore } from "../../store/store";
+import "./CreateViewPage.scss";
 
 export interface ICreateViewPageProps {
   title?: string;
@@ -14,12 +15,12 @@ export interface ICreateViewPageProps {
 
 const CreateViewPage = ({
   title = "",
-  price = 0,
+  price,
   description = "",
   id = "",
 }: ICreateViewPageProps) => {
   const [titleValue, setTitleValue] = useState<string>("");
-  const [priceValue, setPriceValue] = useState<number>(0);
+  const [priceValue, setPriceValue] = useState<number | undefined>(undefined);
   const [descriptionValue, setDescriptionValue] = useState<string>("");
   const history = useHistory();
   const [, dispatch] = useStore();
@@ -54,16 +55,33 @@ const CreateViewPage = ({
   };
 
   return (
-    <>
-      <Input value={titleValue} onChange={setTitleValue} type="text" />
-      <Input value={priceValue} onChange={setPriceValue} type="number" />
-      <Input
-        value={descriptionValue}
-        onChange={setDescriptionValue}
-        type="text"
-      />
-      <Button onClick={onSaveClickHandler} buttonName="Save" />
-    </>
+    <div className="createViewPage">
+      <form className="createViewPage__form">
+        <Input
+          value={titleValue}
+          onChange={setTitleValue}
+          type="text"
+          placeholder="Enter product title..."
+        />
+        <Input
+          value={priceValue}
+          onChange={setPriceValue}
+          type="number"
+          placeholder="Enter product price..."
+        />
+        <Input
+          value={descriptionValue}
+          onChange={setDescriptionValue}
+          type="text"
+          placeholder="Enter product description..."
+        />
+        <Button
+          onClick={onSaveClickHandler}
+          buttonName="Save"
+          className="button button-save"
+        />
+      </form>
+    </div>
   );
 };
 

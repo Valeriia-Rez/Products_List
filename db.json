@@ -2,17 +2,17 @@
   "products": [
     {
       "id": "BMW",
-      "title": "iphone 5c",
+      "title": "iphon",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": "15000",
-      "inCart": true
+      "inCart": false
     },
     {
       "id": "ox98i1f5idg",
       "title": "Citroen",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 200,
-      "inCart": true
+      "price": "250",
+      "inCart": false
     },
     {
       "id": "adv62bxeq9i",
@@ -99,13 +99,6 @@
       "inCart": false
     },
     {
-      "id": "m7281hc8os",
-      "title": "Honda",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 850,
-      "inCart": false
-    },
-    {
       "id": "ixp8ux8u33h",
       "title": "Hyundai",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
@@ -119,14 +112,7 @@
       "price": 200,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "id": "ox98i1f5idg",
-      "quantity": 2
-    },
-    {
-      "title": "iphone 5c",
-      "price": "15000",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "id": "BMW",
-      "quantity": 3
+      "quantity": 1
     }
   ]
 }
