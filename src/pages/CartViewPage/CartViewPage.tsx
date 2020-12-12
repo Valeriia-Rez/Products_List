@@ -36,14 +36,14 @@ const CartViewPage = () => {
 
   const onDecreaseQuantity = async (id: string | number, quantity: number) => {
     await axios.patch(`http://localhost:8000/cart/${id}`, {
-      quantity,
+      quantity: quantity - 1,
     });
     dispatch("DEACREASE_QUANTITY", id);
   };
 
   const onIncreaseQuantity = async (id: number | string, quantity: number) => {
     await axios.patch(`http://localhost:8000/cart/${id}`, {
-      quantity,
+      quantity: quantity + 1,
     });
     dispatch("INCREASE_QUANTITY", id);
   };

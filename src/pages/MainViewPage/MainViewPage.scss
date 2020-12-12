@@ -1,0 +1,13 @@
+.mainViewPage {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  &__products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,11 @@
+.card {
+  border: 1px solid silver;
+  padding: 20px 0;
+  width: 49%;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 5px 16px 0px #b099b1;
+  &__wrapper {
+    padding: 10px 20px;
+  }
+}

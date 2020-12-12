@@ -9,15 +9,14 @@ interface IInputProps {
 
 const Input = ({ value, onChange, type }: IInputProps) => {
   return (
-    <>
-      <input
-        type={type}
-        name="search-field"
-        className="input"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      ></input>
-    </>
+    <input
+      type={type}
+      name="search-field"
+      className="input"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder="Enter title for search product.."
+    ></input>
   );
 };
 

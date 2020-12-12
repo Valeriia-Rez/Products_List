@@ -6,6 +6,7 @@ import { useStore } from "../../store/store";
 import axios from "axios";
 import Input from "../../components/Input";
 import { IProduct } from "../../types";
+import "./MainViewPage.scss";
 
 const MainViewPage = () => {
   const history = useHistory();
@@ -65,16 +66,18 @@ const MainViewPage = () => {
   };
 
   return (
-    <>
-      <Input value={searchTitle} onChange={setSearchTitle} type="text" />
-      <Button
-        onClick={() => onSearchClickHandler(searchTitle)}
-        buttonName="Search"
-      />
-      <Button onClick={() => fetchData()} buttonName="Get All" />
-      <Button onClick={() => history.push("/create")} buttonName="Create" />
-      <Button onClick={() => history.push("/cart")} buttonName="Cart" />
-      <div>
+    <div className="mainViewPage">
+      <div className="mainViewPage__wrapper">
+        <Input value={searchTitle} onChange={setSearchTitle} type="text" />
+        <Button
+          onClick={() => onSearchClickHandler(searchTitle)}
+          buttonName="Search"
+        />
+        <Button onClick={() => fetchData()} buttonName="Get All" />
+        <Button onClick={() => history.push("/create")} buttonName="Create" />
+        <Button onClick={() => history.push("/cart")} buttonName="Cart" />
+      </div>
+      <div className="mainViewPage__products">
         {state.products.map((product: IProduct) => {
           return (
             <Card
@@ -90,7 +93,7 @@ const MainViewPage = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

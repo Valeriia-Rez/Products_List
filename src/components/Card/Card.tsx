@@ -25,16 +25,18 @@ const Card = ({
 
   return (
     <div className="card">
-      <h1>{title}</h1>
-      <span>{price}</span>
-      <p>{description}</p>
-      <Button onClick={() => history.push(`/edit/${id}`)} buttonName="Edit" />
-      <Button onClick={() => onDelete(id)} buttonName="Delete" />
-      <Button
-        onClick={onAddToCart}
-        buttonName="Add to Cart"
-        disabled={inCart}
-      />
+      <div className="card__wrapper">
+        <h1 className="card__heading">{title}</h1>
+        <span>Price: {price}</span>
+        <p>{description}</p>
+        <Button onClick={() => history.push(`/edit/${id}`)} buttonName="Edit" />
+        <Button onClick={() => onDelete(id)} buttonName="Delete" />
+        <Button
+          onClick={onAddToCart}
+          buttonName="Add to Cart"
+          disabled={inCart}
+        />
+      </div>
     </div>
   );
 };

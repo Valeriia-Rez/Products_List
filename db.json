@@ -115,18 +115,18 @@
   ],
   "cart": [
     {
-      "title": "iphone 5c",
-      "price": "15000",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "id": "BMW",
-      "quantity": 7
-    },
-    {
       "title": "Citroen",
       "price": 200,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "id": "ox98i1f5idg",
       "quantity": 2
+    },
+    {
+      "title": "iphone 5c",
+      "price": "15000",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "id": "BMW",
+      "quantity": 3
     }
   ]
 }

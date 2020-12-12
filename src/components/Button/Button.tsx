@@ -8,7 +8,12 @@ interface IButtonProps {
 }
 
 const Button = ({ buttonName, onClick, disabled }: IButtonProps) => (
-  <button onClick={onClick} type="button" disabled={disabled}>
+  <button
+    onClick={onClick}
+    type="button"
+    disabled={disabled}
+    className="button"
+  >
     {buttonName}
   </button>
 );
