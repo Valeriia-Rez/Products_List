@@ -5,14 +5,14 @@
       "title": "iphone 5c",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": "15000",
-      "inCart": false
+      "inCart": true
     },
     {
       "id": "ox98i1f5idg",
       "title": "Citroen",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 200,
-      "inCart": false
+      "inCart": true
     },
     {
       "id": "adv62bxeq9i",
@@ -113,5 +113,20 @@
       "inCart": false
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "title": "iphone 5c",
+      "price": "15000",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "id": "BMW",
+      "quantity": 7
+    },
+    {
+      "title": "Citroen",
+      "price": 200,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "id": "ox98i1f5idg",
+      "quantity": 2
+    }
+  ]
 }

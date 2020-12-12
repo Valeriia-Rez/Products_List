@@ -22,7 +22,7 @@ const CreateViewPage = ({
   const [priceValue, setPriceValue] = useState<number>(0);
   const [descriptionValue, setDescriptionValue] = useState<string>("");
   const history = useHistory();
-  const [state, dispatch] = useStore();
+  const [, dispatch] = useStore();
 
   useEffect(() => {
     setTitleValue(title);

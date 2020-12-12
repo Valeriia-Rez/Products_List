@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Button from "../../components/Button";
 import { useStore } from "../../store/store";
+import { IProduct, ICart } from "../../types";
 
 const CartViewPage = () => {
   const [state, dispatch] = useStore();
@@ -17,12 +18,12 @@ const CartViewPage = () => {
     }
   }, [state.cart]);
 
-  const onDeleteHandler = async (id: string) => {
+  const onDeleteHandler = async (id: string | number) => {
     await axios.patch(`http://localhost:8000/products/${id}`, {
       inCart: false,
     });
 
-    const updatedProducts = state.products.map((product: any) => {
+    const updatedProducts = state.products.map((product: IProduct) => {
       if (product.id === id) {
         product.inCart = false;
       }
@@ -33,10 +34,24 @@ const CartViewPage = () => {
     dispatch("REMOVE_FROM_CART", id);
   };
 
+  const onDecreaseQuantity = async (id: string | number, quantity: number) => {
+    await axios.patch(`http://localhost:8000/cart/${id}`, {
+      quantity,
+    });
+    dispatch("DEACREASE_QUANTITY", id);
+  };
+
+  const onIncreaseQuantity = async (id: number | string, quantity: number) => {
+    await axios.patch(`http://localhost:8000/cart/${id}`, {
+      quantity,
+    });
+    dispatch("INCREASE_QUANTITY", id);
+  };
+
   return (
     <>
       {state.cart.length ? (
-        state.cart.map((product: any) => {
+        state.cart.map((product: ICart) => {
           return (
             <div key={product.id}>
               <h1>{product.title}</h1>
@@ -44,9 +59,19 @@ const CartViewPage = () => {
               <p>{product.description}</p>
               <p>
                 quantity:
-                <Button buttonName="-" onClick={() => console.log("-")} />
+                <Button
+                  buttonName="-"
+                  onClick={() =>
+                    onDecreaseQuantity(product.id, product.quantity)
+                  }
+                />
                 {product.quantity}
-                <Button buttonName="+" onClick={() => console.log("+")} />
+                <Button
+                  buttonName="+"
+                  onClick={() =>
+                    onIncreaseQuantity(product.id, product.quantity)
+                  }
+                />
               </p>
               <Button
                 onClick={() => onDeleteHandler(product.id)}
@@ -58,7 +83,23 @@ const CartViewPage = () => {
       ) : (
         <p>Your cart is empty. </p>
       )}
-      {/* {addToCartProducts.length >= 1 && <div>{addToCartProducts.length}</div>} */}
+      {state.cart.length >= 1 && (
+        <div>
+          Products quantity:
+          {state.cart.reduce((acc: number, cur: ICart) => {
+            acc += cur.quantity;
+            return acc;
+          }, 0)}
+        </div>
+      )}
+      <p>
+        Total amount:
+        {state.cart.length &&
+          state.cart.reduce((acc: number, cur: ICart) => {
+            acc += cur.price * cur.quantity;
+            return acc;
+          }, 0)}
+      </p>
     </>
   );
 };

@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import { useStore } from "../../store/store";
 import axios from "axios";
 import Input from "../../components/Input";
+import { IProduct } from "../../types";
 
 const MainViewPage = () => {
   const history = useHistory();
@@ -39,12 +40,7 @@ const MainViewPage = () => {
     title,
     price,
     description,
-  }: {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-  }) => {
+  }: IProduct) => {
     const addedProduct = {
       title,
       price,
@@ -53,7 +49,7 @@ const MainViewPage = () => {
       quantity: 1,
     };
     await axios.patch(`http://localhost:8000/products/${id}`, { inCart: true });
-    const updatedProducts = state.products.map((product: any) => {
+    const updatedProducts = state.products.map((product: IProduct) => {
       if (product.id === id) {
         product.inCart = true;
       }
@@ -79,7 +75,7 @@ const MainViewPage = () => {
       <Button onClick={() => history.push("/create")} buttonName="Create" />
       <Button onClick={() => history.push("/cart")} buttonName="Cart" />
       <div>
-        {state.products.map((product: any) => {
+        {state.products.map((product: IProduct) => {
           return (
             <Card
               onAddToCart={() => onAddToCartHandler(product)}

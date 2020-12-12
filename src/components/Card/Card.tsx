@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { useHistory } from "react-router";
 import Button from "../Button";
@@ -8,9 +7,9 @@ interface ICardProps {
   title: string;
   price: number;
   description: string;
-  id: string;
-  inCart: boolean;
-  onDelete(id: string): void;
+  id: string | number;
+  inCart: boolean | undefined;
+  onDelete(id: string | number): void;
   onAddToCart(): void;
 }
 const Card = ({

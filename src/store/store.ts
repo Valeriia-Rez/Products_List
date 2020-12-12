@@ -1,32 +1,14 @@
 import {useState, useEffect} from 'react';
+import {IState} from '../types/index';
 
-interface IProduct{
-    id: number;
-    title: string;
-    price:number;
-    description: string;
-    inCart: boolean;
-}
 
-interface ICart{
-    id: number;
-    title: string;
-    price:number;
-    description: string;
-    quantity:number;
-}
-export interface IState{
-    products: IProduct[] | [];
-    cart: ICart | [];
-}
-
-let globalState: any = {};
+let globalState:any = {};
 let listeners:any = [];
 let actions:any = {};
 
 export const useStore = () => {
     const [,setState] = useState(globalState);
-    const dispatch = (actionIdentifier:any, payload:any) => {
+    const dispatch = (actionIdentifier: string, payload: any) => {
         const newState = actions[actionIdentifier](globalState, payload);
         globalState = {...globalState, ...newState};
 
@@ -39,7 +21,7 @@ export const useStore = () => {
         listeners.push(setState);
 
         return () => {
-            listeners = listeners.filter((li:any) => li !== setState);
+            listeners = listeners.filter((li: any) => li !== setState);
         };
     }, [setState]);
 

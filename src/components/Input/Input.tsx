@@ -3,7 +3,7 @@ import "./Input.scss";
 
 interface IInputProps {
   value: string | number;
-  onChange: any;
+  onChange(term: any): void;
   type: string;
 }
 
