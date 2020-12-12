@@ -1,12 +1,12 @@
+@import "../../assets/scss/main.scss";
+
 .layout {
   letter-spacing: 1px;
-  color: rgb(95, 73, 73);
+  color: $darkGrey;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  @include flexColumn;
   &_main {
-    display: flex;
-    flex-direction: column;
+    @include flexColumn;
     flex: 1;
     padding: 0 60px;
     font-size: 18px;

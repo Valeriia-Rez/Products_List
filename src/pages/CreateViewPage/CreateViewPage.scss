@@ -1,10 +1,11 @@
+@import "../../assets/scss/main.scss";
+
 .createViewPage {
-  display: flex;
+  @include flexColumn;
   align-items: center;
-  flex-direction: column;
+
   &__form {
-    display: flex;
-    flex-direction: column;
+    @include flexColumn;
     justify-content: space-around;
     height: 275px;
     width: 500px;

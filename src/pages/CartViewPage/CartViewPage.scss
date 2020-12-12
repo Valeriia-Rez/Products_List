@@ -1,17 +1,17 @@
+@import "../../assets/scss/main.scss";
+
 .cart {
   &__wrapper {
-    display: flex;
-    flex-direction: row;
+    @include flexRowBetween;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin-bottom: 40px;
   }
 
   &__product {
-    border: 1px solid silver;
+    border: $borderGrey;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 2px 5px 16px 0px #b099b1;
+    box-shadow: 2px 5px 16px 0px $darkGrey;
     width: 46%;
     margin-bottom: 20px;
   }

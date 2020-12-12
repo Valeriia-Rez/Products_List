@@ -7,9 +7,9 @@ interface ICardProps {
   title: string;
   price: number;
   description: string;
-  id: string | number;
+  id: string;
   inCart: boolean | undefined;
-  onDelete(id: string | number): void;
+  onDelete(id: string): void;
   onAddToCart(): void;
 }
 const Card = ({

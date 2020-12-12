@@ -2,9 +2,9 @@
   "products": [
     {
       "id": "BMW",
-      "title": "iphon",
+      "title": "iphonkk",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": "15000",
+      "price": "1500044",
       "inCart": false
     },
     {
@@ -12,7 +12,7 @@
       "title": "Citroen",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": "250",
-      "inCart": false
+      "inCart": true
     },
     {
       "id": "adv62bxeq9i",
@@ -108,11 +108,18 @@
   ],
   "cart": [
     {
+      "title": "iphon",
+      "price": "15000",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "id": "BMW",
+      "quantity": 3
+    },
+    {
       "title": "Citroen",
-      "price": 200,
+      "price": "250",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "id": "ox98i1f5idg",
-      "quantity": 1
+      "quantity": 2
     }
   ]
 }

@@ -1,23 +1,23 @@
+@import "../../assets/scss/main.scss";
+
 .card {
-  border: 1px solid silver;
+  border: $borderGrey;
   padding: 20px 0;
   width: 49%;
   margin-bottom: 20px;
   border-radius: 5px;
-  box-shadow: 2px 5px 16px 0px #b099b1;
+  box-shadow: 2px 5px 16px 0px $darkGrey;
 
   &__wrapper {
     padding: 10px 20px;
   }
 
   &__buttons {
-    display: flex;
-    justify-content: space-between;
+    @include flexBetween;
   }
 
   &__buttonsLeft {
-    display: flex;
-    justify-content: space-between;
+    @include flexBetween;
     width: 45%;
   }
 }

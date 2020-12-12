@@ -3,14 +3,12 @@ import Footer from "../Footer";
 import Header from "../Header";
 import "./Layout.scss";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="layout">
-      <Header />
-      <main className="layout_main">{children}</main>
-      <Footer />
-    </div>
-  );
-};
+const Layout = ({ children }: { children: React.ReactNode }) => (
+  <div className="layout">
+    <Header />
+    <main className="layout_main">{children}</main>
+    <Footer />
+  </div>
+);
 
 export default Layout;

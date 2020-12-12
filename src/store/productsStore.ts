@@ -1,5 +1,5 @@
 import {initStore} from './store';
-import {ICart, IProduct, IState} from '../types/index';
+import {ICartItem, IProduct, IState} from '../types/index';
 
 
 const configureStore = () => {
@@ -10,7 +10,7 @@ const configureStore = () => {
         SET_PRODUCT: (curState: IState, product: IProduct) => {
             return {...curState, products: [...curState.products,product]}
         },
-        EDIT_PRODUCT: (curState: any, editedProduct: IProduct) => {
+        EDIT_PRODUCT: (curState: IState, editedProduct: IProduct) => {
             const updatedProducts = curState.products.map((product: IProduct) => {
                 if (product.id === editedProduct.id) {
                   product.title = editedProduct.title;
@@ -27,17 +27,17 @@ const configureStore = () => {
               });
               return {...curState, products: updatedProducts}
         },
-        ADD_TO_CART: (curState: IState, cartList: ICart[]) => {
+        ADD_TO_CART: (curState: IState, cartList: ICartItem[]) => {
             return {...curState, cart: [...curState.cart, ...cartList]}
         },
-        REMOVE_FROM_CART: (curState: IState, id: string | number) => {
-            const updatedProducts = curState.cart.filter((product: ICart) => {
+        REMOVE_FROM_CART: (curState: IState, id: string) => {
+            const updatedProducts = curState.cart.filter((product: ICartItem) => {
                 return product.id !== id;
               });
               return {...curState, cart: updatedProducts}
         },
-        INCREASE_QUANTITY: (curState: any, id: string | number)=>{
-            const updatedProducts = curState.cart.map((product: ICart) => {
+        INCREASE_QUANTITY: (curState: IState, id: string)=>{
+            const updatedProducts = curState.cart.map((product: ICartItem) => {
                 if (product.id === id) {
                    product.quantity += 1;
                   }
@@ -46,8 +46,8 @@ const configureStore = () => {
 
             return {...curState, cart: updatedProducts}
         },
-        DEACREASE_QUANTITY: (curState: any, id: string | number)=>{
-            const updatedProducts = curState.cart.map((product: ICart) => {
+        DEACREASE_QUANTITY: (curState: IState, id: string)=>{
+            const updatedProducts = curState.cart.map((product: ICartItem) => {
                 if (product.id === id){
                     product.quantity -= 1;
                 };

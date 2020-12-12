@@ -11,7 +11,7 @@ import "./MainViewPage.scss";
 const MainViewPage = () => {
   const history = useHistory();
   const [state, dispatch] = useStore();
-  const [searchTitle, setSearchTitle] = useState("");
+  const [searchTitle, setSearchTitle] = useState<string>("");
 
   const fetchData = async () => {
     const products = await axios("http://localhost:8000/products");
@@ -22,7 +22,6 @@ const MainViewPage = () => {
     if (!state.products.length) {
       fetchData();
     }
-    console.log("render");
   }, [state.products.length]);
 
   const onSearchClickHandler = async (title: string) => {
@@ -72,7 +71,6 @@ const MainViewPage = () => {
     }
   };
 
-  console.log(state);
   return (
     <div className="mainViewPage">
       <div className="mainViewPage__wrapper">

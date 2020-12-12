@@ -2,15 +2,26 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import Button from "../../components/Button";
 import { useStore } from "../../store/store";
-import { IProduct, ICart } from "../../types";
+import { IProduct, ICartItem } from "../../types";
 import "./CartViewPage.scss";
+
+const totalQuantity = (cart: ICartItem[]) =>
+  cart.reduce((acc: number, cur: ICartItem) => {
+    acc += cur.quantity;
+    return acc;
+  }, 0);
+
+const totalAmount = (cart: ICartItem[]) =>
+  cart.reduce((acc: number, cur: ICartItem) => {
+    acc += cur.price * cur.quantity;
+    return acc;
+  }, 0);
 
 const CartViewPage = () => {
   const [state, dispatch] = useStore();
 
   const fetchData = async () => {
     const products = await axios("http://localhost:8000/cart");
-    console.log(products.data);
     dispatch("ADD_TO_CART", products.data);
   };
 
@@ -24,7 +35,6 @@ const CartViewPage = () => {
     await axios.patch(`http://localhost:8000/products/${id}`, {
       inCart: false,
     });
-
     const updatedProducts = state.products.map((product: IProduct) => {
       if (product.id === id) {
         product.inCart = false;
@@ -51,12 +61,12 @@ const CartViewPage = () => {
     });
     dispatch("INCREASE_QUANTITY", id);
   };
-  console.log(state.cart);
+
   return (
     <div className="cart">
       <div className="cart__wrapper">
         {state.cart.length ? (
-          state.cart.map((product: ICart) => {
+          state.cart.map((product: ICartItem) => {
             return (
               <div key={product.id} className="cart__product">
                 <h1>{product.title}</h1>
@@ -95,23 +105,12 @@ const CartViewPage = () => {
       {state.cart.length >= 1 && (
         <div className="cart__info">
           <div>
-            Products quantity:
-            <span className="cart__infoItem">
-              {state.cart.reduce((acc: number, cur: ICart) => {
-                acc += cur.quantity;
-                return acc;
-              }, 0)}
-            </span>
+            Products quantity: {totalQuantity(state.cart)}
+            <span className="cart__infoItem"></span>
           </div>
           <div>
-            Total amount:
-            <span className="cart__infoItem">
-              {state.cart.length &&
-                state.cart.reduce((acc: number, cur: ICart) => {
-                  acc += cur.price * cur.quantity;
-                  return acc;
-                }, 0)}
-            </span>
+            Total amount: {state.cart.length && totalAmount(state.cart)}
+            <span className="cart__infoItem"></span>
           </div>
         </div>
       )}

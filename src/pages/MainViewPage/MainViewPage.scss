@@ -1,20 +1,17 @@
+@import "../../assets/scss/main.scss";
+
 .mainViewPage {
   &__wrapper {
-    display: flex;
-    flex-direction: row;
+    @include flexRowBetween;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 40px;
   }
   &__products {
-    display: flex;
-    flex-direction: row;
+    @include flexRowBetween;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
   &__buttons {
-    display: flex;
-    justify-content: space-between;
+    @include flexBetween;
     width: 49%;
   }
   input {

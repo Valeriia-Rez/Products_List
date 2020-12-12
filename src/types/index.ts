@@ -1,13 +1,13 @@
 export interface IProduct{
-    id: number | string;
+    id: string;
     title: string;
     price:number;
     description: string;
     inCart?: boolean;
 }
 
-export interface ICart{
-    id: number | string;
+export interface ICartItem{
+    id: string;
     title: string;
     price:number;
     description: string;
@@ -15,6 +15,6 @@ export interface ICart{
 }
 
 export interface IState{
-    products: IProduct[] | [];
-    cart: ICart[] | [];
+    products: IProduct[];
+    cart: ICartItem[];
 }

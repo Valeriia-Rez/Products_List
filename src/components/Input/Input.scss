@@ -1,7 +1,9 @@
+@import "../../assets/scss/main.scss";
+
 .input {
   outline: none;
   width: 100%;
   padding: 11px;
   border-radius: 5px;
-  border: 1px solid silver;
+  border: $borderGrey;
 }

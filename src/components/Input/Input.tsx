@@ -3,7 +3,7 @@ import "./Input.scss";
 
 interface IInputProps {
   value: string | number | undefined;
-  onChange(term: any): void;
+  onChange: Function;
   type: string;
   placeholder: string;
   onKeyPress?(e: React.SyntheticEvent): void;
@@ -15,18 +15,16 @@ const Input = ({
   type,
   placeholder,
   onKeyPress,
-}: IInputProps) => {
-  return (
-    <input
-      type={type}
-      name="search-field"
-      className="input"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder={placeholder}
-      onKeyPress={(e) => onKeyPress && onKeyPress(e)}
-    ></input>
-  );
-};
+}: IInputProps) => (
+  <input
+    type={type}
+    name="search-field"
+    className="input"
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    placeholder={placeholder}
+    onKeyPress={(e) => onKeyPress && onKeyPress(e)}
+  ></input>
+);
 
 export default Input;

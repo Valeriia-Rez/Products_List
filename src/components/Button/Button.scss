@@ -1,22 +1,24 @@
+@import "../../assets/scss/main.scss";
+
 .button {
   cursor: pointer;
   padding: 8px 18px;
   border-radius: 5px;
-  border: 1px solid silver;
+  border: $borderGrey;
   font-size: 20px;
   min-width: 140px;
   letter-spacing: 1px;
-  color: rgb(95, 73, 73);
+  color: $darkGrey;
   &:hover {
-    color: #fff;
-    background-color: rgb(98, 44, 119);
+    color: $white;
+    background-color: $primary;
   }
 
   &-disabled {
-    color: rgb(233, 225, 225);
+    color: $lightGrey;
     &:hover {
-      background-color: rgba(239, 239, 239, 0.3);
-      color: rgb(233, 225, 225);
+      background-color: $grey;
+      color: $lightGrey;
       cursor: default;
     }
   }
@@ -25,12 +27,12 @@
     margin: 0 5px;
     cursor: pointer;
     outline: none;
-    border: 1px solid silver;
+    border: $borderGrey;
     border-radius: 2px;
     &:hover {
-      color: #fff;
-      background-color: rgb(98, 44, 119);
-      border: 1px solid rgb(98, 44, 119);
+      color: $white;
+      background-color: $primary;
+      border: $borderPrimary;
     }
   }
 
