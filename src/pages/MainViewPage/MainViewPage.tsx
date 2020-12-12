@@ -69,13 +69,28 @@ const MainViewPage = () => {
     <div className="mainViewPage">
       <div className="mainViewPage__wrapper">
         <Input value={searchTitle} onChange={setSearchTitle} type="text" />
-        <Button
-          onClick={() => onSearchClickHandler(searchTitle)}
-          buttonName="Search"
-        />
-        <Button onClick={() => fetchData()} buttonName="Get All" />
-        <Button onClick={() => history.push("/create")} buttonName="Create" />
-        <Button onClick={() => history.push("/cart")} buttonName="Cart" />
+        <div className="mainViewPage__buttons">
+          <Button
+            onClick={() => onSearchClickHandler(searchTitle)}
+            buttonName="Search"
+            className="button"
+          />
+          <Button
+            onClick={() => fetchData()}
+            buttonName="Get All"
+            className="button"
+          />
+          <Button
+            onClick={() => history.push("/create")}
+            buttonName="Create"
+            className="button"
+          />
+          <Button
+            onClick={() => history.push("/cart")}
+            buttonName="Cart"
+            className="button"
+          />
+        </div>
       </div>
       <div className="mainViewPage__products">
         {state.products.map((product: IProduct) => {

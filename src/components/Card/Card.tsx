@@ -29,13 +29,26 @@ const Card = ({
         <h1 className="card__heading">{title}</h1>
         <span>Price: {price}</span>
         <p>{description}</p>
-        <Button onClick={() => history.push(`/edit/${id}`)} buttonName="Edit" />
-        <Button onClick={() => onDelete(id)} buttonName="Delete" />
-        <Button
-          onClick={onAddToCart}
-          buttonName="Add to Cart"
-          disabled={inCart}
-        />
+        <div className="card__buttons">
+          <div className="card__buttonsLeft">
+            <Button
+              onClick={() => history.push(`/edit/${id}`)}
+              buttonName="Edit"
+              className="button"
+            />
+            <Button
+              onClick={() => onDelete(id)}
+              buttonName="Delete"
+              className="button"
+            />
+          </div>
+          <Button
+            onClick={onAddToCart}
+            buttonName="Add to Cart"
+            disabled={inCart}
+            className={inCart ? "button button-disabled" : "button"}
+          />
+        </div>
       </div>
     </div>
   );

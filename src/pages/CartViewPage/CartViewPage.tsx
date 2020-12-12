@@ -64,6 +64,7 @@ const CartViewPage = () => {
                   onClick={() =>
                     onDecreaseQuantity(product.id, product.quantity)
                   }
+                  className="button-sm"
                 />
                 {product.quantity}
                 <Button
@@ -71,11 +72,13 @@ const CartViewPage = () => {
                   onClick={() =>
                     onIncreaseQuantity(product.id, product.quantity)
                   }
+                  className="button-sm"
                 />
               </p>
               <Button
                 onClick={() => onDeleteHandler(product.id)}
                 buttonName="Delete"
+                className="button"
               />
             </div>
           );
