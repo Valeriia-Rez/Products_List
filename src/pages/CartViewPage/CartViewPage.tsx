@@ -18,7 +18,7 @@ const totalAmount = (cart: ICartItem[]) =>
   }, 0);
 
 const CartViewPage = () => {
-  const [state, dispatch] = useStore();
+  const [{ cart, products }, dispatch] = useStore();
 
   const fetchData = async () => {
     const products = await axios("http://localhost:8000/cart");
@@ -26,16 +26,16 @@ const CartViewPage = () => {
   };
 
   useEffect(() => {
-    if (!state.cart.length) {
+    if (!cart.length) {
       fetchData();
     }
-  }, [state.cart.length]);
+  }, [cart.length]);
 
   const onDeleteHandler = async (id: string) => {
     await axios.patch(`http://localhost:8000/products/${id}`, {
       inCart: false,
     });
-    const updatedProducts = state.products.map((product: IProduct) => {
+    const updatedProducts = products.map((product: IProduct) => {
       if (product.id === id) {
         product.inCart = false;
       }
@@ -65,8 +65,8 @@ const CartViewPage = () => {
   return (
     <div className="cart">
       <div className="cart__wrapper">
-        {state.cart.length ? (
-          state.cart.map((product: ICartItem) => {
+        {cart.length ? (
+          cart.map((product: ICartItem) => {
             return (
               <div key={product.id} className="cart__product">
                 <h1>{product.title}</h1>
@@ -102,14 +102,14 @@ const CartViewPage = () => {
           <p className="cart__message">Your cart is empty. </p>
         )}
       </div>
-      {state.cart.length >= 1 && (
+      {cart.length >= 1 && (
         <div className="cart__info">
           <div>
-            Products quantity: {totalQuantity(state.cart)}
+            Products quantity: {totalQuantity(cart)}
             <span className="cart__infoItem"></span>
           </div>
           <div>
-            Total amount: {state.cart.length && totalAmount(state.cart)}
+            Total amount: {cart.length && totalAmount(cart)}
             <span className="cart__infoItem"></span>
           </div>
         </div>

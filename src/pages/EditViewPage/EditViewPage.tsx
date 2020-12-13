@@ -43,6 +43,7 @@ const EditViewPage = (props: RouteComponentProps<IRouteInfo>) => {
           price={selectedProduct.price}
           description={selectedProduct.description}
           id={selectedProduct.id}
+          inCart={selectedProduct.inCart}
         />
       ) : (
         <p>Loading...</p>

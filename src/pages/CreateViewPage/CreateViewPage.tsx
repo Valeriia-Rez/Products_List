@@ -11,6 +11,7 @@ export interface ICreateViewPageProps {
   price?: number;
   description?: string;
   id?: string;
+  inCart?: boolean;
 }
 
 const CreateViewPage = ({
@@ -18,6 +19,7 @@ const CreateViewPage = ({
   price,
   description = "",
   id = "",
+  inCart = false,
 }: ICreateViewPageProps) => {
   const [titleValue, setTitleValue] = useState<string>("");
   const [priceValue, setPriceValue] = useState<number | undefined>(undefined);
@@ -37,13 +39,14 @@ const CreateViewPage = ({
       title: titleValue,
       price: priceValue,
       description: descriptionValue,
-      inCart: false,
+      inCart,
     };
     if (id) {
       const editedProduct = await axios.patch(
         `http://localhost:8000/products/${id}`,
         product
       );
+
       dispatch("EDIT_PRODUCT", editedProduct.data);
     } else {
       const createdProduct = await axios.post(

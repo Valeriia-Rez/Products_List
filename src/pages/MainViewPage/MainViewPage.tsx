@@ -15,7 +15,7 @@ const MainViewPage = () => {
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalProductsCount / 10);
-  console.log(products);
+
   const fetchData = async (page: number, limit: number = 10) => {
     const products = await axios(
       `http://localhost:8000/products?_page=${page}&_limit=${limit}`
@@ -49,6 +49,8 @@ const MainViewPage = () => {
   const onDeleteHandler = async (id: string) => {
     await axios.delete(`http://localhost:8000/products/${id}`);
     dispatch("DELETE_PRODUCT", id);
+    await axios.delete(`http://localhost:8000/cart/${id}`);
+    dispatch("REMOVE_FROM_CART", id);
   };
 
   const onAddToCartHandler = async ({
