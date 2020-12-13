@@ -9,7 +9,8 @@
   min-width: 140px;
   letter-spacing: 1px;
   color: $darkGrey;
-  &:hover {
+  &:hover,
+  &.active {
     color: $white;
     background-color: $primary;
   }

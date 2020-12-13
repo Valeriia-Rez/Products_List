@@ -104,6 +104,13 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 900,
       "inCart": false
+    },
+    {
+      "title": "tttttt",
+      "price": "888",
+      "description": "gggggggggggggggg",
+      "inCart": false,
+      "id": "BjRYBfl"
     }
   ],
   "cart": [
@@ -119,7 +126,7 @@
       "price": "250",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "id": "ox98i1f5idg",
-      "quantity": 2
+      "quantity": 1
     }
   ]
 }

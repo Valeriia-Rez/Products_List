@@ -1,11 +1,11 @@
 import {initStore} from './store';
-import {ICartItem, IProduct, IState} from '../types/index';
+import {ICartItem, IProduct, IProductList, IState} from '../types/index';
 
 
 const configureStore = () => {
     const actions = {
-        SET_PRODUCTS: (curState: IState, productsList: IProduct[]) => {
-            return {...curState, products: productsList}
+        SET_PRODUCTS: (curState: IState, productsList: IProductList) => {
+            return {...curState, products: productsList.products,totalProductsCount: productsList.totalProductsCount}
         },
         SET_PRODUCT: (curState: IState, product: IProduct) => {
             return {...curState, products: [...curState.products,product]}
@@ -57,7 +57,7 @@ const configureStore = () => {
             return {...curState, cart: updatedProducts}
         }
      }
-    initStore(actions, {products: [], cart:[]});
+    initStore(actions, {products: [], totalProductsCount: 0, cart:[]});
 }
 
 export default configureStore;

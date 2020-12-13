@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { RouteComponentProps, useHistory } from "react-router-dom";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { useStore } from "../../store/store";
@@ -7,28 +7,43 @@ import axios from "axios";
 import Input from "../../components/Input";
 import { IProduct } from "../../types";
 import "./MainViewPage.scss";
+import Pagination from "../../components/Pagination";
 
-const MainViewPage = () => {
+const MainViewPage = (props: RouteComponentProps) => {
   const history = useHistory();
   const [state, dispatch] = useStore();
   const [searchTitle, setSearchTitle] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(state.totalProductsCount / 10);
 
-  const fetchData = async () => {
-    const products = await axios("http://localhost:8000/products");
-    dispatch("SET_PRODUCTS", products.data);
+  const fetchData = async (page: number, limit: number = 10) => {
+    const products = await axios(
+      `http://localhost:8000/products?_page=${page}&_limit=${limit}`
+    );
+    dispatch("SET_PRODUCTS", {
+      products: products.data,
+      totalProductsCount: products.headers["x-total-count"],
+    });
   };
 
   useEffect(() => {
     if (!state.products.length) {
-      fetchData();
+      fetchData(currentPage);
     }
   }, [state.products.length]);
+
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [props.history.action]);
 
   const onSearchClickHandler = async (title: string) => {
     const products = await axios(
       `http://localhost:8000/products?title=${title}`
     );
-    dispatch("SET_PRODUCTS", products.data);
+    dispatch("SET_PRODUCTS", {
+      products: products.data,
+      totalProductsCount: products.headers["x-total-count"],
+    });
   };
 
   const onDeleteHandler = async (id: string) => {
@@ -71,6 +86,11 @@ const MainViewPage = () => {
     }
   };
 
+  const onPageClickHandler = (selectedPage: number) => {
+    fetchData(selectedPage);
+    setCurrentPage(selectedPage);
+  };
+
   return (
     <div className="mainViewPage">
       <div className="mainViewPage__wrapper">
@@ -88,7 +108,7 @@ const MainViewPage = () => {
             className="button"
           />
           <Button
-            onClick={() => fetchData()}
+            onClick={() => fetchData(0, 10)}
             buttonName="Get All"
             className="button"
           />
@@ -120,6 +140,11 @@ const MainViewPage = () => {
           );
         })}
       </div>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageClick={onPageClickHandler}
+      />
     </div>
   );
 };

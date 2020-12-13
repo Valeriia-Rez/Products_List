@@ -17,4 +17,10 @@ export interface ICartItem{
 export interface IState{
     products: IProduct[];
     cart: ICartItem[];
+    totalProductsCount: number
+}
+
+export interface IProductList{
+    products: IProduct[];
+    totalProductsCount: number
 }

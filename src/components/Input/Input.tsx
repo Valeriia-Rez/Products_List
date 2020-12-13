@@ -7,6 +7,7 @@ interface IInputProps {
   type: string;
   placeholder: string;
   onKeyPress?(e: React.SyntheticEvent): void;
+  required?: boolean;
 }
 
 const Input = ({
@@ -15,6 +16,7 @@ const Input = ({
   type,
   placeholder,
   onKeyPress,
+  required,
 }: IInputProps) => (
   <input
     type={type}
@@ -24,6 +26,7 @@ const Input = ({
     onChange={(e) => onChange(e.target.value)}
     placeholder={placeholder}
     onKeyPress={(e) => onKeyPress && onKeyPress(e)}
+    required={required}
   ></input>
 );
 
