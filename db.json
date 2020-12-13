@@ -1,24 +1,10 @@
 {
   "products": [
     {
-      "id": "BMW",
-      "title": "iphonkk",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": "15000448",
-      "inCart": false
-    },
-    {
       "id": "ox98i1f5idg",
       "title": "Citroen",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": "250",
-      "inCart": true
-    },
-    {
-      "id": "adv62bxeq9i",
-      "title": "Lexus",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 250,
       "inCart": false
     },
     {
@@ -68,13 +54,6 @@
       "title": "Scoda",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 600,
-      "inCart": false
-    },
-    {
-      "id": "hxgyij8ixgj",
-      "title": "Suzuki",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 650,
       "inCart": false
     },
     {

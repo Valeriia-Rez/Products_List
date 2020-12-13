@@ -5,7 +5,7 @@ import {ICartItem, IProduct, IProductList, IState} from '../types/index';
 const configureStore = () => {
     const actions = {
         SET_PRODUCTS: (curState: IState, productsList: IProductList) => {
-            return {...curState, products: productsList.products,totalProductsCount: productsList.totalProductsCount}
+            return {...curState, products: productsList.products,totalProductsCount: productsList.totalProductsCount ||  curState.totalProductsCount }
         },
         SET_PRODUCT: (curState: IState, product: IProduct) => {
             return {...curState, products: [...curState.products,product]}

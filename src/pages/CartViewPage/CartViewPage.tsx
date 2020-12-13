@@ -41,7 +41,7 @@ const CartViewPage = () => {
       }
       return product;
     });
-    dispatch("SET_PRODUCTS", updatedProducts);
+    dispatch("SET_PRODUCTS", { products: updatedProducts });
     await axios.delete(`http://localhost:8000/cart/${id}`);
     dispatch("REMOVE_FROM_CART", id);
   };

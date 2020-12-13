@@ -11,11 +11,11 @@ import Pagination from "../../components/Pagination";
 
 const MainViewPage = () => {
   const history = useHistory();
-  const [state, dispatch] = useStore();
+  const [{ products, totalProductsCount, cart }, dispatch] = useStore();
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(state.totalProductsCount / 10);
-
+  const totalPages = Math.ceil(totalProductsCount / 10);
+  console.log(products);
   const fetchData = async (page: number, limit: number = 10) => {
     const products = await axios(
       `http://localhost:8000/products?_page=${page}&_limit=${limit}`
@@ -27,10 +27,10 @@ const MainViewPage = () => {
   };
 
   useEffect(() => {
-    if (!state.products.length) {
+    if (!products.length) {
       fetchData(currentPage);
     }
-  }, [state.products.length]);
+  }, [products.length]);
 
   useEffect(() => {
     fetchData(currentPage);
@@ -65,14 +65,14 @@ const MainViewPage = () => {
       quantity: 1,
     };
     await axios.patch(`http://localhost:8000/products/${id}`, { inCart: true });
-    const updatedProducts = state.products.map((product: IProduct) => {
+    const updatedProducts = products.map((product: IProduct) => {
       if (product.id === id) {
         product.inCart = true;
       }
       return product;
     });
 
-    dispatch("SET_PRODUCTS", updatedProducts);
+    dispatch("SET_PRODUCTS", { products: updatedProducts });
     const addedProductToCart = await axios.post(
       `http://localhost:8000/cart`,
       addedProduct
@@ -119,13 +119,13 @@ const MainViewPage = () => {
           />
           <Button
             onClick={() => history.push("/cart")}
-            buttonName={`Cart ${!!state.cart.length ? state.cart.length : ""}`}
+            buttonName={`Cart ${!!cart.length ? cart.length : ""}`}
             className="button"
           />
         </div>
       </div>
       <div className="mainViewPage__products">
-        {state.products.map((product: IProduct) => {
+        {products.map((product: IProduct) => {
           return (
             <Card
               onAddToCart={() => onAddToCartHandler(product)}

@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Products List Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CRUD web app built in React/Typescript using custom store hook to store data on a front end and json-server as a fake API for keeping data on a backend
+
+## Common typing issues
+
+While running app locally it generates tsconfig.json file with "jsx": "react-jsx" as one of compiler options. You might experience an issue in VSCode complaining that - `Argument for '--jsx' option must be: 'preserve', 'react-native', 'react'.`. To fix that you might need to do following steps in your VSCode:
+
+- Click: CTRL + SHIFT + P
+- Choose: Typescript: Select Typescript Version
+- Choose: Use workspace version
 
 ## Available Scripts
 
@@ -8,7 +16,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode alongside with json-server on (http://localhost:8000) to be able to interact with fake API\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
