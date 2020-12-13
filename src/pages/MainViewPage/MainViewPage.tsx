@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { useStore } from "../../store/store";
@@ -9,7 +9,7 @@ import { IProduct } from "../../types";
 import "./MainViewPage.scss";
 import Pagination from "../../components/Pagination";
 
-const MainViewPage = (props: RouteComponentProps) => {
+const MainViewPage = () => {
   const history = useHistory();
   const [state, dispatch] = useStore();
   const [searchTitle, setSearchTitle] = useState<string>("");
@@ -34,7 +34,7 @@ const MainViewPage = (props: RouteComponentProps) => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [props.history.action]);
+  }, [history.action]);
 
   const onSearchClickHandler = async (title: string) => {
     const products = await axios(

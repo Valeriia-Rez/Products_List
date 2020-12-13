@@ -31,7 +31,7 @@ const CreateViewPage = ({
     setDescriptionValue(description);
   }, [title, price, description]);
 
-  const onSaveClickHandler = async (e: any) => {
+  const onSaveHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const product = {
       title: titleValue,
@@ -57,7 +57,7 @@ const CreateViewPage = ({
 
   return (
     <div className="createViewPage">
-      <form className="createViewPage__form" onSubmit={onSaveClickHandler}>
+      <form className="createViewPage__form" onSubmit={onSaveHandler}>
         <Input
           value={titleValue}
           onChange={setTitleValue}

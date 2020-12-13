@@ -1,15 +1,17 @@
 import React from "react";
 import Button from "../Button";
 
+interface IPaginationProps {
+  totalPages: number;
+  currentPage: number;
+  onPageClick: (currentPage: number) => void;
+}
+
 const Pagination = ({
   totalPages,
   currentPage,
   onPageClick,
-}: {
-  totalPages: number;
-  currentPage: number;
-  onPageClick: (currentPage: number) => void;
-}) => {
+}: IPaginationProps) => {
   let pagination;
   if (totalPages > 0) {
     pagination = Array.from(Array(totalPages), (e, i) => {

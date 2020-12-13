@@ -31,7 +31,7 @@ const CartViewPage = () => {
     }
   }, [state.cart.length]);
 
-  const onDeleteHandler = async (id: string | number) => {
+  const onDeleteHandler = async (id: string) => {
     await axios.patch(`http://localhost:8000/products/${id}`, {
       inCart: false,
     });
@@ -46,7 +46,7 @@ const CartViewPage = () => {
     dispatch("REMOVE_FROM_CART", id);
   };
 
-  const onDecreaseQuantity = async (id: string | number, quantity: number) => {
+  const onDecreaseQuantity = async (id: string, quantity: number) => {
     if (quantity - 1 >= 1) {
       await axios.patch(`http://localhost:8000/cart/${id}`, {
         quantity: quantity - 1,
@@ -55,7 +55,7 @@ const CartViewPage = () => {
     }
   };
 
-  const onIncreaseQuantity = async (id: number | string, quantity: number) => {
+  const onIncreaseQuantity = async (id: string, quantity: number) => {
     await axios.patch(`http://localhost:8000/cart/${id}`, {
       quantity: quantity + 1,
     });

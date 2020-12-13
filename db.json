@@ -4,7 +4,7 @@
       "id": "BMW",
       "title": "iphonkk",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": "1500044",
+      "price": "15000448",
       "inCart": false
     },
     {
@@ -104,13 +104,6 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 900,
       "inCart": false
-    },
-    {
-      "title": "tttttt",
-      "price": "888",
-      "description": "gggggggggggggggg",
-      "inCart": false,
-      "id": "BjRYBfl"
     }
   ],
   "cart": [

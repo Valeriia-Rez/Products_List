@@ -2,9 +2,13 @@ import {useState, useEffect} from 'react';
 import {IState} from '../types/index';
 
 
-let globalState:any = {};
-let listeners: any = [];
-let actions:any = {};
+let globalState: any = {};
+let listeners: Array<IListener> = [];
+let actions: any = {};
+//Find out what is the proper typings should be here
+interface IListener {
+    (argument: any): void
+};
 
 export const useStore = () => {
     const [,setState] = useState(globalState);
@@ -21,7 +25,7 @@ export const useStore = () => {
         listeners.push(setState);
 
         return () => {
-            listeners = listeners.filter((li: any) => li !== setState);
+            listeners = listeners.filter((li: IListener) => li !== setState);
         };
     }, [setState]);
 
