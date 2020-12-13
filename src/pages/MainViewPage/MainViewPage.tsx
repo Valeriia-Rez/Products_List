@@ -30,11 +30,11 @@ const MainViewPage = () => {
     if (!products.length) {
       fetchData(currentPage);
     }
-  }, [products.length]);
+  }, [products.length, currentPage]);
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [history.action]);
+  }, [history.action, currentPage]);
 
   const onSearchClickHandler = async (title: string) => {
     const products = await axios(
@@ -127,20 +127,24 @@ const MainViewPage = () => {
         </div>
       </div>
       <div className="mainViewPage__products">
-        {products.map((product: IProduct) => {
-          return (
-            <Card
-              onAddToCart={() => onAddToCartHandler(product)}
-              onDelete={onDeleteHandler}
-              key={product.id}
-              title={product.title}
-              price={product.price}
-              description={product.description}
-              id={product.id}
-              inCart={product.inCart}
-            />
-          );
-        })}
+        {products.length ? (
+          products.map((product: IProduct) => {
+            return (
+              <Card
+                onAddToCart={() => onAddToCartHandler(product)}
+                onDelete={onDeleteHandler}
+                key={product.id}
+                title={product.title}
+                price={product.price}
+                description={product.description}
+                id={product.id}
+                inCart={product.inCart}
+              />
+            );
+          })
+        ) : (
+          <p className="cart__message">No products in the list</p>
+        )}
       </div>
       <Pagination
         totalPages={totalPages}
